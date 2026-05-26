@@ -1,28 +1,215 @@
-btn.addEventListener("click", () => {
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-  if(tentativas < 6){
-    moverBotao();
-    return;
-  }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pra você 🤍</title>
 
-  btn.style.display = "none";
+  <style>
 
-  document.querySelector("h1").style.display = "none";
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
 
-  message.innerHTML = `
-    <div class="final">
-      <div class="hearts">🤍 🤍 🤍</div>
+    body{
+      background:#bfd7ea;
+      overflow:hidden;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+      padding:20px;
+    }
 
-      <h2>EU TE AMO</h2>
+    .container{
+      text-align:center;
+      width:100%;
+      max-width:400px;
+    }
 
-      <p>
-        você é uma das melhores partes da minha vida :)
-      </p>
+    h1{
+      font-size:2rem;
+      font-weight:300;
+      margin-bottom:40px;
+      line-height:1.4;
+    }
 
-      <div class="hearts">🤍 🤍 🤍</div>
-    </div>
-  `;
+    #btn{
+      position:absolute;
+      padding:18px 28px;
+      border:none;
+      border-radius:999px;
+      background:white;
+      color:#5b7c99;
+      font-size:0.95rem;
+      font-weight:bold;
+      letter-spacing:1px;
+      cursor:pointer;
+      transition:0.15s;
+      text-transform:uppercase;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    }
 
-  message.style.display = "block";
+    #message{
+      display:none;
+      animation:fade 1s ease forwards;
+    }
 
-});
+    .final{
+      animation:fade 1s ease forwards;
+    }
+
+    .final h2{
+      font-size:2.5rem;
+      margin-bottom:20px;
+      letter-spacing:3px;
+    }
+
+    .final p{
+      font-size:1.2rem;
+      line-height:1.6;
+    }
+
+    .hearts{
+      font-size:2rem;
+      margin:20px 0;
+      animation:pulse 1.5s infinite;
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes pulse{
+
+      0%{
+        transform:scale(1);
+      }
+
+      50%{
+        transform:scale(1.15);
+      }
+
+      100%{
+        transform:scale(1);
+      }
+
+    }
+
+    @media(max-width:600px){
+
+      h1{
+        font-size:1.6rem;
+      }
+
+      .final h2{
+        font-size:2rem;
+      }
+
+      .final p{
+        font-size:1rem;
+      }
+
+      #btn{
+        font-size:0.8rem;
+        padding:16px 24px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>
+      clique no botão 🤍
+    </h1>
+
+    <button id="btn">
+      CLIQUE AQUI
+    </button>
+
+    <div id="message"></div>
+
+  </div>
+
+  <script>
+
+    const btn = document.getElementById("btn");
+    const message = document.getElementById("message");
+
+    let tentativas = 0;
+
+    function moverBotao(){
+
+      if(tentativas >= 6){
+        return;
+      }
+
+      const largura = window.innerWidth - 180;
+      const altura = window.innerHeight - 100;
+
+      const x = Math.random() * largura;
+      const y = Math.random() * altura;
+
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;
+
+      tentativas++;
+
+    }
+
+    btn.addEventListener("touchstart", moverBotao);
+    btn.addEventListener("mouseover", moverBotao);
+
+    btn.addEventListener("click", () => {
+
+      if(tentativas < 6){
+        moverBotao();
+        return;
+      }
+
+      btn.style.display = "none";
+
+      document.querySelector("h1").style.display = "none";
+
+      message.innerHTML = `
+        <div class="final">
+
+          <div class="hearts">🤍 🤍 🤍</div>
+
+          <h2>EU TE AMO</h2>
+
+          <p>
+            você é uma das melhores partes da minha vida :)
+          </p>
+
+          <div class="hearts">🤍 🤍 🤍</div>
+
+        </div>
+      `;
+
+      message.style.display = "block";
+
+    });
+
+  </script>
+
+</body>
+</html>
