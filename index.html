@@ -1,4 +1,3 @@
-index.html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,6 +6,7 @@ index.html
   <title>pra você 🤍</title>
 
   <style>
+
     *{
       margin:0;
       padding:0;
@@ -15,40 +15,49 @@ index.html
     }
 
     body{
-      background:#0f0f0f;
+      background:#bfd7ea;
       overflow:hidden;
       height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
       color:white;
+      padding:20px;
     }
 
     .container{
       text-align:center;
+      width:100%;
+      max-width:400px;
     }
 
     h1{
-      margin-bottom:40px;
       font-size:2rem;
       font-weight:300;
+      margin-bottom:40px;
+      line-height:1.4;
     }
 
     #btn{
       position:absolute;
-      padding:16px 30px;
+      padding:18px 28px;
       border:none;
       border-radius:999px;
       background:white;
-      color:black;
-      font-size:1rem;
+      color:#5b7c99;
+      font-size:0.95rem;
+      font-weight:bold;
+      letter-spacing:1px;
       cursor:pointer;
       transition:0.15s;
+      text-transform:uppercase;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
     }
 
     #message{
       display:none;
       font-size:2rem;
+      line-height:1.4;
       animation:fade 1s ease forwards;
     }
 
@@ -57,41 +66,65 @@ index.html
         opacity:0;
         transform:translateY(20px);
       }
+
       to{
         opacity:1;
         transform:translateY(0);
       }
     }
+
+    @media(max-width:600px){
+
+      h1{
+        font-size:1.6rem;
+      }
+
+      #message{
+        font-size:1.7rem;
+      }
+
+      #btn{
+        font-size:0.8rem;
+        padding:16px 24px;
+      }
+
+    }
+
   </style>
 </head>
 
 <body>
 
   <div class="container">
-    <h1>clique no botão 🤍</h1>
+
+    <h1>
+      clique no botão 🤍
+    </h1>
 
     <button id="btn">
-      eu tenho uma surpresa
+      clique aqui
     </button>
 
     <div id="message">
       você é uma das melhores partes da minha vida :)
     </div>
+
   </div>
 
   <script>
+
     const btn = document.getElementById("btn");
     const message = document.getElementById("message");
 
     let tentativas = 0;
 
-    function moverBotao() {
+    function moverBotao(){
 
       if(tentativas >= 6){
         return;
       }
 
-      const largura = window.innerWidth - 200;
+      const largura = window.innerWidth - 180;
       const altura = window.innerHeight - 100;
 
       const x = Math.random() * largura;
@@ -101,8 +134,10 @@ index.html
       btn.style.top = `${y}px`;
 
       tentativas++;
+
     }
 
+    btn.addEventListener("touchstart", moverBotao);
     btn.addEventListener("mouseover", moverBotao);
 
     btn.addEventListener("click", () => {
@@ -117,7 +152,9 @@ index.html
       document.querySelector("h1").style.display = "none";
 
       message.style.display = "block";
+
     });
+
   </script>
 
 </body>
