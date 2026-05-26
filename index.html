@@ -1,0 +1,124 @@
+index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pra você 🤍</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#0f0f0f;
+      overflow:hidden;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+    }
+
+    .container{
+      text-align:center;
+    }
+
+    h1{
+      margin-bottom:40px;
+      font-size:2rem;
+      font-weight:300;
+    }
+
+    #btn{
+      position:absolute;
+      padding:16px 30px;
+      border:none;
+      border-radius:999px;
+      background:white;
+      color:black;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.15s;
+    }
+
+    #message{
+      display:none;
+      font-size:2rem;
+      animation:fade 1s ease forwards;
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>clique no botão 🤍</h1>
+
+    <button id="btn">
+      eu tenho uma surpresa
+    </button>
+
+    <div id="message">
+      você é uma das melhores partes da minha vida :)
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById("btn");
+    const message = document.getElementById("message");
+
+    let tentativas = 0;
+
+    function moverBotao() {
+
+      if(tentativas >= 6){
+        return;
+      }
+
+      const largura = window.innerWidth - 200;
+      const altura = window.innerHeight - 100;
+
+      const x = Math.random() * largura;
+      const y = Math.random() * altura;
+
+      btn.style.left = `${x}px`;
+      btn.style.top = `${y}px`;
+
+      tentativas++;
+    }
+
+    btn.addEventListener("mouseover", moverBotao);
+
+    btn.addEventListener("click", () => {
+
+      if(tentativas < 6){
+        moverBotao();
+        return;
+      }
+
+      btn.style.display = "none";
+
+      document.querySelector("h1").style.display = "none";
+
+      message.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
